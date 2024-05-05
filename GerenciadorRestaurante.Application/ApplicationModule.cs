@@ -11,6 +11,7 @@ namespace GerenciadorRestaurante.Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddScoped<IRestauranteService, RestauranteService>();
+            services.AddScoped<IRestaurantePratoService, RestaurantePratoService>();
 
             //AutoMapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

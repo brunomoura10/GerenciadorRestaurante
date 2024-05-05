@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using GerenciadorRestaurante.Application.Models.InputModels;
+using GerenciadorRestaurante.Application.Models.ViewModels;
 using GerenciadorRestaurante.Application.Services.Interfaces;
 using GerenciadorRestaurante.Core.Entites;
+using GerenciadorRestaurante.Core.Exceptions;
 using GerenciadorRestaurante.Core.Repositories;
 using System;
 using System.Collections.Generic;
@@ -22,12 +24,42 @@ namespace GerenciadorRestaurante.Application.Services
             _mapper = mapper;
         }
 
+        public async Task AtualizarRestaurante(long id, RestauranteInputModel restauranteInputModel)
+        {
+            var restaurante = await _restauranteRepository.ObterPorIdAsync(id) ?? throw new RestauranteNaoEncontradoException(); ;
+
+            var restauranteAtualizado = _mapper.Map<Restaurante>(restauranteInputModel);
+
+            await _restauranteRepository.AtualizarAsync(restauranteAtualizado);
+        }
+
         public async Task CadastrarRestaurante(RestauranteInputModel restauranteInputModel)
         {
             var restaurante = _mapper.Map<Restaurante>(restauranteInputModel);
 
             await _restauranteRepository.InserirAsync(restaurante);
             
+        }
+
+        public async Task ExcluirRestaurante(long id)
+        {
+            var restaurante = _restauranteRepository.ObterPorIdAsync(id) ?? throw new RestauranteNaoEncontradoException();
+
+            await _restauranteRepository.ExcluirAsync(id);
+        }
+
+        public async Task<RestauranteViewModel> ObterPorId(long id)
+        {
+            var restaurante = await _restauranteRepository.ObterPorIdAsync(id) ?? throw new RestauranteNaoEncontradoException();
+
+            return _mapper.Map<RestauranteViewModel>(restaurante);
+        }
+
+        public async Task<IEnumerable<RestauranteViewModel>> ObterTodos()
+        {
+           var restaurantes = await _restauranteRepository.ObterTodosAsync();
+
+            return _mapper.Map<IEnumerable<RestauranteViewModel>>(restaurantes);
         }
     }
 }

@@ -15,6 +15,7 @@ namespace GerenciadorRestaurante.Application.AutoMapper
         public ModelToEntityProfile()
         {
             CreateMap<RestauranteInputModel, Restaurante>();
+            CreateMap<RestaurantePratoInputModel, RestaurantePrato>();
         }
 
     }

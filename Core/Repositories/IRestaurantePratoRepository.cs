@@ -1,4 +1,5 @@
 ﻿using GerenciadorRestaurante.Core.Entites;
+using GerenciadorRestaurante;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace GerenciadorRestaurante.Core.Repositories
 {
     public interface IRestaurantePratoRepository : IRepositorioBase<RestaurantePrato>
     {
+        Task<RestaurantePrato> ObterPorIdFull(long id);
     }
 }

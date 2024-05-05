@@ -9,12 +9,12 @@ namespace GerenciadorRestaurante.Application.Models.ViewModels
 {
     public class RestauranteViewModel
     {
-        public long Id { get; private set; }
-        public DateTime DataCriacao { get; private set; }
-        public DateTime DataAlteracao { get;  private set; }
-        public string Nome { get;  private set; }
-        public string Descricao { get; private set; }
-        public Endereco Endereco { get; private set; }
+        public long Id { get; set; }
+        public DateTime DataCriacao { get; set; }
+        public DateTime DataAlteracao { get;  set; }
+        public string Nome { get;  set; }
+        public string Descricao { get;  set; }
+        public Endereco Endereco { get;  set; }
 
 
     }
