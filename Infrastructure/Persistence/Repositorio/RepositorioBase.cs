@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -53,6 +54,11 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Repositorio
         public virtual async Task<IEnumerable<T>> ObterTodosAsync()
         {
             return await _dbSet.ToListAsync();
+        }
+
+        public virtual async Task<bool> ExistAsync(Expression<Func<T, bool>> filter)
+        {
+            return await _dbSet.AnyAsync(filter);
         }
     }
 }

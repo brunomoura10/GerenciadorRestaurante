@@ -26,7 +26,7 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Configuration
                 x.Property(p => p.Bairro).HasColumnType("varchar(60)").HasColumnName("Bairro").IsRequired();
                 x.Property(p => p.Logradouro).HasColumnType("varchar(60)").HasColumnName("Logradouro").IsRequired();
                 x.Property(p => p.Numero).HasColumnType("varchar(10)").HasColumnName("Numero").IsRequired();
-                x.Property(p => p.Complemento).HasColumnType("varchar(60)").HasColumnName("Complemento").IsRequired();
+                x.Property(p => p.Complemento).HasColumnType("varchar(60)").HasColumnName("Complemento");
             });
 
             builder.HasMany(x => x.Mesas).WithOne(x => x.Restaurante).HasForeignKey(x => x.RestauranteId);

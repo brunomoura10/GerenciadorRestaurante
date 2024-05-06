@@ -25,4 +25,14 @@ namespace GerenciadorRestaurante.Core.Exceptions
         {
         }
     }
+
+    public class RestaurantePratoNaoEncontradoException : Exception
+    {
+        public RestaurantePratoNaoEncontradoException(string message) : base(message)
+        {
+        }
+        public RestaurantePratoNaoEncontradoException() : base(ExceptionMessage.RestaurantePratoNaoEncontrado)
+        {
+        }
+    }
 }
