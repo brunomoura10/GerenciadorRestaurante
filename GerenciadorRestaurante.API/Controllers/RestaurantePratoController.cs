@@ -16,7 +16,7 @@ namespace GerenciadorRestaurante.API.Controllers
             _restaurantePratoService = restaurantePratoService;
         }
 
-        [HttpPost("cadastrar-prato-restaurante")]
+        [HttpPost("cadastrar-restaurante-prato")]
         public async Task<IActionResult> CadastrarPratoRestaurante([FromBody] RestaurantePratoInputModel pratoInputModel)
         {
             try
