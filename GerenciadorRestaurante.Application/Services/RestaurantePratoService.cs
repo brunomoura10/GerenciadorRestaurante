@@ -27,6 +27,17 @@ namespace GerenciadorRestaurante.Application.Services
             _mapper = mapper;
         }
 
+        public async Task AtualizarRestaurantePrato(long id, RestaurantePratoUpdateModel restaurantePratoUpdateModel)
+        {
+            var resturantePrato = await _restaurantePratoRepository.ObterPorIdAsync(id) ?? throw new RestaurantePratoNaoEncontradoException();
+
+            resturantePrato.Disponivel = restaurantePratoUpdateModel.Disponivel;
+            
+            await _restaurantePratoRepository.AtualizarAsync(resturantePrato);
+
+        }
+
+
         public async Task CadastrarPratoRestaurante(RestaurantePratoInputModel restaurantePratoInputModel)
         {
             var restaurante = await _restauranteRepository.ObterPorIdAsync(restaurantePratoInputModel.RestauranteId) ?? throw new RestauranteNaoEncontradoException();
@@ -44,6 +55,14 @@ namespace GerenciadorRestaurante.Application.Services
             var restaurantePrato = await _restaurantePratoRepository.ObterPorId(id) ?? throw new RestaurantePratoNaoEncontradoException();
 
             return _mapper.Map<RestaurantePratoViewModel>(restaurantePrato);
+        }
+
+        public async Task<IEnumerable<RestaurantePratoViewModel>> ObterTodosRestaurantePrato()
+        {
+            var restaurantePratos = await _restaurantePratoRepository.ObterTodosAsync();
+
+            return _mapper.Map<IEnumerable<RestaurantePratoViewModel>>(restaurantePratos);
+
         }
     }
 }

@@ -28,9 +28,9 @@ namespace GerenciadorRestaurante.Application.Services
         {
             var restaurante = await _restauranteRepository.ObterPorIdAsync(id) ?? throw new RestauranteNaoEncontradoException(); ;
 
-            var restauranteAtualizado = _mapper.Map<Restaurante>(restauranteInputModel);
+            _mapper.Map(restauranteInputModel,restaurante);
 
-            await _restauranteRepository.AtualizarAsync(restauranteAtualizado);
+            await _restauranteRepository.AtualizarAsync(restaurante);
         }
 
         public async Task CadastrarRestaurante(RestauranteInputModel restauranteInputModel)
@@ -45,7 +45,7 @@ namespace GerenciadorRestaurante.Application.Services
         {
             var restaurante = _restauranteRepository.ObterPorIdAsync(id) ?? throw new RestauranteNaoEncontradoException();
 
-            await _restauranteRepository.ExcluirAsync(id);
+            await _restauranteRepository.ExcluirAsync(restaurante.Result);
         }
 
         public async Task<RestauranteViewModel> ObterPorId(long id)

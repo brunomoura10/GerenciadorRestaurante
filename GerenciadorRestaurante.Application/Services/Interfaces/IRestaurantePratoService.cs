@@ -12,6 +12,9 @@ namespace GerenciadorRestaurante.Application.Services.Interfaces
     {
         Task CadastrarPratoRestaurante( RestaurantePratoInputModel restaurantePratoInputModel);
         Task<RestaurantePratoViewModel> ObterRestaurantePrato(long id);
+        Task<IEnumerable<RestaurantePratoViewModel>> ObterTodosRestaurantePrato();
+        Task AtualizarRestaurantePrato(long id,RestaurantePratoUpdateModel restaurantePratoUpdateModel);
+
         
     }
 }

@@ -17,11 +17,11 @@ namespace GerenciadorRestaurante.API.Controllers
         }
 
         [HttpPost("cadastrar-restaurante-prato")]
-        public async Task<IActionResult> CadastrarPratoRestaurante([FromBody] RestaurantePratoInputModel pratoInputModel)
+        public async Task<IActionResult> CadastrarPratoRestaurante([FromBody] RestaurantePratoInputModel restaurantePratoInputModel)
         {
             try
             {
-                await _restaurantePratoService.CadastrarPratoRestaurante(pratoInputModel);
+                await _restaurantePratoService.CadastrarPratoRestaurante(restaurantePratoInputModel);
                 return Ok("RestaurantePrato Cadastrado com Sucesso");
             }
             catch (Exception e)
@@ -38,6 +38,36 @@ namespace GerenciadorRestaurante.API.Controllers
             {
                 var restaurantePrato = await _restaurantePratoService.ObterRestaurantePrato(id);
                 return Ok(restaurantePrato);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("obter-todos-restaurante-prato")]
+        public async Task<IActionResult> ObterTodosRestaurantePrato()
+        {
+            try
+            {
+                var restaurantePratos = await _restaurantePratoService.ObterTodosRestaurantePrato();
+                return Ok(restaurantePratos);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut("atualizar-restaurante-prato/{id}")]
+        public async Task<IActionResult> AtualizarRestaurantePrato([FromRoute] long id, [FromBody] RestaurantePratoUpdateModel restaurantePratoUpdateModel)
+        {
+            try
+            {
+                await _restaurantePratoService.AtualizarRestaurantePrato(id, restaurantePratoUpdateModel);
+                return Ok("RestaurantePrato Atualizado com Sucesso");
             }
             catch (Exception e)
             {

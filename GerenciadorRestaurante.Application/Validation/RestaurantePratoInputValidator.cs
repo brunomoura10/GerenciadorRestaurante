@@ -25,7 +25,7 @@ namespace GerenciadorRestaurante.Application.Validation
                 .NotEmpty().WithMessage("O id do prato é obrigatório");
             
             RuleFor(r => r.Disponivel)
-                .NotEmpty().WithMessage("O campo disponível é obrigatório");
+                .NotEmpty().When(r => r.Disponivel != false).WithMessage("O campo disponível é obrigatório");
 
           
         }

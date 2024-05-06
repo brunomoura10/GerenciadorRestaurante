@@ -161,11 +161,11 @@ namespace GerenciadorRestaurante.Infrastructure.Migrations
 
             modelBuilder.Entity("GerenciadorRestaurante.Core.Entites.RestaurantePrato", b =>
                 {
-                    b.Property<long>("RestauranteId")
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<long>("PratoId")
-                        .HasColumnType("bigint");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("DataAlteracao")
                         .HasColumnType("datetime2");
@@ -176,15 +176,17 @@ namespace GerenciadorRestaurante.Infrastructure.Migrations
                     b.Property<bool>("Disponivel")
                         .HasColumnType("bit");
 
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<long>("PratoId")
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    b.Property<long>("RestauranteId")
+                        .HasColumnType("bigint");
 
-                    b.HasKey("RestauranteId", "PratoId");
+                    b.HasKey("Id");
 
                     b.HasIndex("PratoId");
+
+                    b.HasIndex("RestauranteId");
 
                     b.ToTable("tb_restaurante_prato", (string)null);
                 });
