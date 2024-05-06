@@ -16,7 +16,7 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Repositorio
         {
         }
 
-        public async Task<RestaurantePrato> ObterPorIdFull(long id)
+        public async Task<RestaurantePrato> ObterPorId(long id)
         {
              var restaurantePrato = await _dbSet.Include(rp => rp.Prato)
                                                         .Include(rp => rp.Restaurante)

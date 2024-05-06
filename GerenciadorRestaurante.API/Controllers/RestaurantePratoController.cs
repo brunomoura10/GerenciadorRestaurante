@@ -37,17 +37,7 @@ namespace GerenciadorRestaurante.API.Controllers
             try
             {
                 var restaurantePrato = await _restaurantePratoService.ObterRestaurantePrato(id);
-                return Ok(new {restaurantePrato.Id,
-                    restaurantePrato.RestauranteId,
-                    restaurantePrato.PratoId,
-                    restaurantePrato.Disponivel, 
-                    Restaurante =  new {RestauranteNome = restaurantePrato.Restaurante.Nome},
-                    Prato = new
-                    {
-                        PratoNome = restaurantePrato.Prato.Nome,
-                        PratoPreco = restaurantePrato.Prato.Preco
-                    }
-                    });;
+                return Ok(restaurantePrato);
             }
             catch (Exception e)
             {
