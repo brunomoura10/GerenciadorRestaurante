@@ -52,7 +52,7 @@ namespace GerenciadorRestaurante.Application.Services
 
         public async Task<RestaurantePratoViewModel> ObterRestaurantePrato(long id)
         {
-            var restaurantePrato = await _restaurantePratoRepository.ObterPorId(id) ?? throw new RestaurantePratoNaoEncontradoException();
+            var restaurantePrato = await _restaurantePratoRepository.ObterPorIdAsync(id) ?? throw new RestaurantePratoNaoEncontradoException();
 
             return _mapper.Map<RestaurantePratoViewModel>(restaurantePrato);
         }

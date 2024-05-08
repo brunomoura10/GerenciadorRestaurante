@@ -16,31 +16,30 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Repositorio
         {
         }
 
-        public async Task<RestaurantePrato> ObterPorId(long id)
+        public override async Task<RestaurantePrato> ObterPorIdAsync(long id)
         {
-             var restaurantePrato = await _dbSet.Include(rp => rp.Prato)
-                                                        .Include(rp => rp.Restaurante)
-                                                        .Select(e => new RestaurantePrato
-                                                        {
-                                                            Id = e.Id,
-                                                            RestauranteId = e.RestauranteId,
-                                                            PratoId = e.PratoId,
-                                                            Disponivel = e.Disponivel,
-                                                            Prato = new Prato
-                                                            {
-                                                                Nome = e.Prato.Nome,
-                                                                Preco = e.Prato.Preco
-                                                            },
-                                                            Restaurante = new Restaurante
-                                                            {
-                                                                Nome = e.Restaurante.Nome
-                                                            }
-                                                        })
-                                                        .FirstOrDefaultAsync(e => e.Id == id);
-            
-       
+            var restaurantePrato = await _dbSet.Include(rp => rp.Prato)
+                                                       .Include(rp => rp.Restaurante)
+                                                       .Select(e => new RestaurantePrato
+                                                       {
+                                                           Id = e.Id,
+                                                           RestauranteId = e.RestauranteId,
+                                                           PratoId = e.PratoId,
+                                                           Disponivel = e.Disponivel,
+                                                           Prato = new Prato
+                                                           {
+                                                               Nome = e.Prato.Nome,
+                                                               Preco = e.Prato.Preco
+                                                           },
+                                                           Restaurante = new Restaurante
+                                                           {
+                                                               Nome = e.Restaurante.Nome
+                                                           }
+                                                       })
+                                                       .FirstOrDefaultAsync(e => e.Id == id);
+
+
             return restaurantePrato;
-            
         }
     }
 }

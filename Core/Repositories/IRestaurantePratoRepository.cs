@@ -10,6 +10,6 @@ namespace GerenciadorRestaurante.Core.Repositories
 {
     public interface IRestaurantePratoRepository : IRepositorioBase<RestaurantePrato>
     {
-        Task<RestaurantePrato> ObterPorId(long id);
+        
     }
 }
