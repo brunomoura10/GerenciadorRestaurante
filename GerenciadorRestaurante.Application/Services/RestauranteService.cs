@@ -43,9 +43,9 @@ namespace GerenciadorRestaurante.Application.Services
 
         public async Task ExcluirRestaurante(long id)
         {
-            var restaurante = _restauranteRepository.ObterPorIdAsync(id) ?? throw new RestauranteNaoEncontradoException();
+            var restaurante = await _restauranteRepository.ObterPorIdAsync(id) ?? throw new RestauranteNaoEncontradoException();
 
-            await _restauranteRepository.ExcluirAsync(restaurante.Result);
+            await _restauranteRepository.ExcluirAsync(restaurante);
         }
 
         public async Task<RestauranteViewModel> ObterPorId(long id)

@@ -47,7 +47,8 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Repositorio
 
         public virtual async Task<T> ObterPorIdAsync(long id)
         {
-           return await _dbSet.FirstOrDefaultAsync(e => e.Id == id);
+            return await _dbSet.FirstOrDefaultAsync(e => e.Id == id);
+
         }
 
         public virtual async Task<IEnumerable<T>> ObterTodosAsync()
