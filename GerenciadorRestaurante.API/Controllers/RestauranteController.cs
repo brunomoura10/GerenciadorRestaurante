@@ -21,7 +21,7 @@ namespace GerenciadorRestaurante.API.Controllers
             try
             {
                 await _restauranteService.CadastrarRestaurante(restauranteInputModel);
-                return Ok();
+                return Ok("Restaurante Cadastrado com Sucesso");
             }
             catch (Exception e)
             {
@@ -29,6 +29,67 @@ namespace GerenciadorRestaurante.API.Controllers
                return BadRequest(e.Message);
             }
             
+        }
+
+        [HttpPut("atualizar-restaurante/{id}")]
+        public async Task<IActionResult> AtualizarRestaurante([FromRoute] long id, [FromBody] RestauranteInputModel restauranteInputModel)
+        {
+            try
+            {
+                await _restauranteService.AtualizarRestaurante(id, restauranteInputModel);
+                return Ok("Restaurante Atualizado com Sucesso");
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete("excluir-restaurante/{id}")]
+        public async Task<IActionResult> ExcluirRestaurante([FromRoute] long id)
+        {
+            try
+            {
+                await _restauranteService.ExcluirRestaurante(id);
+                return Ok($"Restaurante com id: {id} excluido");
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("obter-todos")]
+        public async Task<IActionResult> ObterTodos()
+        {
+            try
+            {
+                var restaurantes = await _restauranteService.ObterTodos();
+                return Ok(restaurantes);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+
+        [HttpGet("obter-por-id/{id}")]      
+        public async Task<IActionResult> ObterPorId([FromRoute] long id)
+        {
+            try
+            {
+                var restaurante = await _restauranteService.ObterPorId(id);
+                return Ok(restaurante);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
         }
     }
 }

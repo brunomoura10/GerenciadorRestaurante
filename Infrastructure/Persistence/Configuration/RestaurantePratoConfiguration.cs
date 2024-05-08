@@ -14,7 +14,7 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Configuration
         public void Configure(EntityTypeBuilder<RestaurantePrato> builder)
         {
             builder.ToTable("tb_restaurante_prato");
-            builder.HasKey(rp => new { rp.RestauranteId, rp.PratoId });
+            builder.HasKey(rp => rp.Id);
 
             builder.HasOne(rp => rp.Restaurante)
                 .WithMany(r => r.RestaurantePratos)
@@ -25,6 +25,7 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Configuration
                 .HasForeignKey(rp => rp.PratoId);
             builder.Property(p => p.Id).ValueGeneratedOnAdd().UseIdentityColumn();
             builder.Property(p => p.Disponivel).HasColumnType("bit").IsRequired();
+
             
         }
     }

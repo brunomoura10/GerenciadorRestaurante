@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,9 +31,8 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Repositorio
             return entidade;
         }
 
-        public virtual async Task ExcluirAsync(long id)
+        public virtual async Task ExcluirAsync(T entidade)
         {
-            var entidade = await ObterPorIdAsync(id);
             _dbSet.Remove(entidade);
             await _context.SaveChangesAsync();
          
@@ -47,12 +47,18 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Repositorio
 
         public virtual async Task<T> ObterPorIdAsync(long id)
         {
-           return await _dbSet.FirstOrDefaultAsync(e => e.Id == id);
+            return await _dbSet.FirstOrDefaultAsync(e => e.Id == id);
+
         }
 
         public virtual async Task<IEnumerable<T>> ObterTodosAsync()
         {
             return await _dbSet.ToListAsync();
+        }
+
+        public virtual async Task<bool> ExistAsync(Expression<Func<T, bool>> filter)
+        {
+            return await _dbSet.AnyAsync(filter);
         }
     }
 }
