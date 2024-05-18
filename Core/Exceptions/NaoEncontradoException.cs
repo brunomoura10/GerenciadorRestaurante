@@ -35,4 +35,14 @@ namespace GerenciadorRestaurante.Core.Exceptions
         {
         }
     }
+
+    public class MesaNaoEncontradaException : Exception
+    {
+        public MesaNaoEncontradaException(string message) : base(message)
+        {
+        }
+        public MesaNaoEncontradaException() : base(ExceptionMessage.MesaNaoEncontrada)
+        {
+        }
+    }
 }

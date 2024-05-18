@@ -11,5 +11,7 @@ namespace GerenciadorRestaurante.Core.Exceptions
         public static string RestauranteNaoEncontrado = "Restaurante não encontrado na base de dados";
         public static string PratoNaoEncontrado = "Prato não encontrado na base de dados";
         public static string RestaurantePratoNaoEncontrado = "Relação Restaurante Prato não encontrada na base de dados";
+
+        public static string MesaNaoEncontrada = "Mesa não encontrada na base de dados";
     }
 }
