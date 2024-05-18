@@ -24,6 +24,7 @@ namespace GerenciadorRestaurante.Infrastructure
             }, ServiceLifetime.Scoped);
 
             services.AddScoped<IRestaurantRepository,RestauranteRepository> ();
+            services.AddScoped<IReservaRepository,ReservaRepository>();
 
             return services;
 

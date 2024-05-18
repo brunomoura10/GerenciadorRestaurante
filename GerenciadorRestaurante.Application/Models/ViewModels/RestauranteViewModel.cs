@@ -15,7 +15,5 @@ namespace GerenciadorRestaurante.Application.Models.ViewModels
         public string Nome { get;  private set; }
         public string Descricao { get; private set; }
         public Endereco Endereco { get; private set; }
-
-
     }
 }

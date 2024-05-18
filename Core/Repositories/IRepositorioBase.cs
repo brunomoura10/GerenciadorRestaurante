@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,5 +15,6 @@ namespace GerenciadorRestaurante.Core.Repositories
         Task<T> ObterPorIdAsync(long id);
         Task<IEnumerable<T>> ObterTodosAsync();
         Task ExcluirAsync(long id);
+        Task<bool> ExistAsync(Expression<Func<T, bool>> filter);
     }
 }
