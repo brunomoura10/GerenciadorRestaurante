@@ -29,7 +29,7 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Configuration
                 x.Property(p => p.Numero).HasColumnType("varchar(10)").HasColumnName("Numero").IsRequired();
                 x.Property(p => p.Complemento).HasColumnType("varchar(60)").HasColumnName("Complemento");
             });
-            builder.Property(p => p.Cpf).HasColumnType("varchar(11)").IsRequired(); 
+            builder.Property(p => p.CPF).HasColumnType("varchar(11)").IsRequired(); 
             builder.Property(p => p.DataNascimento).HasColumnType("date").IsRequired();
             builder.Property(p => p.Tipo).HasColumnType("int").IsRequired();
         }

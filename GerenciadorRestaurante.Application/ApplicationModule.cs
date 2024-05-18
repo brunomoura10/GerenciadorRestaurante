@@ -1,8 +1,12 @@
-﻿using GerenciadorRestaurante.Application.Services;
+﻿using FluentValidation.AspNetCore;
+using FluentValidation;
+using GerenciadorRestaurante.Application.Services;
 using GerenciadorRestaurante.Application.Services.Interfaces;
 using GerenciadorRestaurante.Core.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using GerenciadorRestaurante.Application.Validation;
+using GerenciadorRestaurante.Application.Models.ViewModels;
 
 
 namespace GerenciadorRestaurante.Application
@@ -18,6 +22,10 @@ namespace GerenciadorRestaurante.Application
             //AutoMapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+            //Validation
+            services.AddFluentValidationAutoValidation();
+            services.AddValidatorsFromAssemblyContaining<ReservaInputValidator>();
+            services.AddValidatorsFromAssemblyContaining<ClienteInputValidator>();
             return services;
         }
     }
