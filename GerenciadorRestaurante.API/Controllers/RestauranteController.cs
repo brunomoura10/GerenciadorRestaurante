@@ -91,5 +91,24 @@ namespace GerenciadorRestaurante.API.Controllers
                 return BadRequest(e.Message);
             }
         }
+        //endpoint para obter o restaurante e todas as suas reservas para o dia
+        //será passado o id do restaurante e a data que deseja obter as reservas
+
+        [HttpGet("obter-reservas-por-data/{id}/{data}")]      
+        public async Task<IActionResult> ObterReservasPorData([FromRoute] long id, [FromRoute] DateTime data)
+        {
+            try
+            {
+                var restaurante = await _restauranteService.ObterRestauranteComReservas(id, data);
+                return Ok(restaurante);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+
     }
 }
