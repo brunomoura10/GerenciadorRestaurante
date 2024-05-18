@@ -16,6 +16,8 @@ namespace GerenciadorRestaurante.Application.AutoMapper
         {
             CreateMap<RestauranteInputModel, Restaurante>();
             CreateMap<RestaurantePratoInputModel, RestaurantePrato>();
+            CreateMap<MesaInputModel, Mesa>();
+            CreateMap<PratoInputModel, Prato>();
         }
 
     }

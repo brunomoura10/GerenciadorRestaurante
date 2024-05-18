@@ -15,6 +15,8 @@ namespace GerenciadorRestaurante.Application.AutoMapper
         {
             CreateMap<Restaurante, RestauranteViewModel>();
             CreateMap<RestaurantePrato, RestaurantePratoViewModel>();
+            CreateMap<Mesa, MesaViewModel>();
+            CreateMap<Prato, PratoViewModel>();
         }     
     }
 }
