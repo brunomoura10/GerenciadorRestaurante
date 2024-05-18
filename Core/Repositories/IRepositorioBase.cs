@@ -14,7 +14,7 @@ namespace GerenciadorRestaurante.Core.Repositories
         Task<T> AtualizarAsync(T entidade);
         Task<T> ObterPorIdAsync(long id);
         Task<IEnumerable<T>> ObterTodosAsync();
-        Task ExcluirAsync(T entidade;
+        Task ExcluirAsync(T entidade);
         Task<bool> ExistAsync(Expression<Func<T, bool>> filter);
     }
 }
