@@ -26,7 +26,8 @@ namespace GerenciadorRestaurante.Infrastructure
             services.AddScoped<IRestaurantRepository, RestauranteRepository>();
             services.AddScoped<IRestaurantePratoRepository, RestaurantePratoRepository>();
             services.AddScoped<IReservaRepository, ReservaRepository>();
-
+            services.AddScoped<IMesaRepository, MesaRepository>();
+            services.AddScoped<IPratoRepository, PratoRepository>();
 
             return services;
 
