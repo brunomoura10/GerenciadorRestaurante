@@ -61,5 +61,17 @@ namespace GerenciadorRestaurante.Application.Services
 
             return _mapper.Map<IEnumerable<RestauranteViewModel>>(restaurantes);
         }
+      
+        public async Task<RestauranteViewModel> ObterRestauranteComReservas(long id, DateTime dataReserva)
+        {
+            var restaurante = await _restauranteRepository.ObterRestauranteComReservasAsync(id, dataReserva) ?? throw new RestauranteNaoEncontradoException();
+
+            if (restaurante.Reservas.Count == 0)
+            {
+                throw new NehumaReservaEncontradaParadaRestaurante();
+            }
+
+            return _mapper.Map<RestauranteViewModel>(restaurante);
+        }
     }
 }
