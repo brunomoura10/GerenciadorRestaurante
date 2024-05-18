@@ -1,5 +1,6 @@
 ﻿using GerenciadorRestaurante.Application.Services;
 using GerenciadorRestaurante.Application.Services.Interfaces;
+using GerenciadorRestaurante.Core.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -15,6 +16,8 @@ namespace GerenciadorRestaurante.Application
         {
             services.AddScoped<IRestauranteService, RestauranteService>();
             services.AddScoped<IRestaurantePratoService, RestaurantePratoService>();
+            services.AddScoped<IReservaService, ReservaService>();
+            services.AddScoped<IClienteService, ClienteService>();
 
             //AutoMapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

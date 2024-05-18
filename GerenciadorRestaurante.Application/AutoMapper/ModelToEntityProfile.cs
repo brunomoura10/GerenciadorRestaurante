@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,7 @@ namespace GerenciadorRestaurante.Application.AutoMapper
         {
             CreateMap<RestauranteInputModel, Restaurante>();
             CreateMap<RestaurantePratoInputModel, RestaurantePrato>();
+            CreateMap<ReservaInputModel, Reserva>();
             CreateMap<MesaInputModel, Mesa>();
             CreateMap<PratoInputModel, Prato>();
         }

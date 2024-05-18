@@ -38,6 +38,11 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Repositorio
          
         }
 
+        public virtual async Task<bool> ExistAsync(Expression<Func<T, bool>> filter)
+        {
+            return await _dbSet.AnyAsync(filter);
+        }
+
         public virtual async Task<T> InserirAsync(T entidade)
         {
             _dbSet.Add(entidade);

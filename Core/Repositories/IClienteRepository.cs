@@ -9,5 +9,6 @@ namespace GerenciadorRestaurante.Core.Repositories
 {
     public interface IUsuarioRepository : IRepositorioBase<Usuario>
     {
+
     }
 }
