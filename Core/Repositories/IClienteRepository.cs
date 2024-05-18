@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace GerenciadorRestaurante.Core.Repositories
 {
-    public interface IUsuarioRepository : IRepositorioBase<Usuario>
+
+    public interface IClienteRepository : IRepositorioBase<Usuario>
     {
 
     }

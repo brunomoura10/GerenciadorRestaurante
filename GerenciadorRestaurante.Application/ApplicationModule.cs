@@ -24,6 +24,7 @@ namespace GerenciadorRestaurante.Application
             services.AddScoped<IMesaService, MesaService>();
             services.AddScoped<IPratoService, PratoService>();
 
+
             //AutoMapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -34,6 +35,8 @@ namespace GerenciadorRestaurante.Application
             services.AddValidatorsFromAssemblyContaining<ClienteInputValidator>();
             services.AddValidatorsFromAssemblyContaining<MesaInputValidator>();
             services.AddValidatorsFromAssemblyContaining<PratoInputValidator>();
+
+
             return services;
         }
     }

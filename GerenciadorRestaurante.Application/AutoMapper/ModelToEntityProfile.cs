@@ -17,11 +17,12 @@ namespace GerenciadorRestaurante.Application.AutoMapper
         public ModelToEntityProfile()
         {
             CreateMap<RestauranteInputModel, Restaurante>();
-            CreateMap<RestaurantePratoInputModel, RestaurantePrato>();
             CreateMap<ReservaInputModel, Reserva>();
-            CreateMap<ClienteViewModel, Usuario>();
+            CreateMap<RestaurantePratoInputModel, RestaurantePrato>();
             CreateMap<MesaInputModel, Mesa>();
             CreateMap<PratoInputModel, Prato>();
+            CreateMap<ClienteViewModel, Usuario>();
+
         }
     }
 }

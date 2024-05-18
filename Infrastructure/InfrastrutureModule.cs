@@ -28,6 +28,8 @@ namespace GerenciadorRestaurante.Infrastructure
             services.AddScoped<IReservaRepository, ReservaRepository>();
             services.AddScoped<IMesaRepository, MesaRepository>();
             services.AddScoped<IPratoRepository, PratoRepository>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
+
 
             return services;
 
