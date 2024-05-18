@@ -18,9 +18,8 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Configuration
             builder.Property(p => p.Id).ValueGeneratedOnAdd().UseIdentityColumn();
             builder.Property(p => p.Numero).HasColumnType("int").IsRequired();
             builder.Property(p => p.Capacidade).HasColumnType("int").IsRequired();
-            builder.Property(p => p.Localizacao).HasColumnType("int").IsRequired();
+            builder.Property(p => p.Localizacao).HasColumnType("string").IsRequired();
             builder.HasOne(x => x.Restaurante).WithMany(x => x.Mesas).HasForeignKey(x => x.RestauranteId);
-
         }
     }
 }
