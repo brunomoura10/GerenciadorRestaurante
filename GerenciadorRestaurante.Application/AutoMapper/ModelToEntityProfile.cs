@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GerenciadorRestaurante.Application.Models.InputModels;
+using GerenciadorRestaurante.Application.Models.ViewModels;
 using GerenciadorRestaurante.Core.Entites;
 using System;
 using System.Collections.Generic;
