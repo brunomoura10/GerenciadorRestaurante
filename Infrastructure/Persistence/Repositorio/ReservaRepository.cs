@@ -12,6 +12,4 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Repositorio
     {
         public ReservaRepository(ApplicationDbContext context) : base(context) { }
     }
-    
-    
 }

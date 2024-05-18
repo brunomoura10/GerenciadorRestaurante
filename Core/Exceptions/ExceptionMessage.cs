@@ -11,5 +11,9 @@ namespace GerenciadorRestaurante.Core.Exceptions
         public static string RestauranteNaoEncontrado = "Restaurante não encontrado na base de dados";
         public static string PratoNaoEncontrado = "Prato não encontrado na base de dados";
         public static string RestaurantePratoNaoEncontrado = "Relação Restaurante Prato não encontrada na base de dados";
+        public static string Id_Not_Found = "Consulta não encontrada";
+        public static string Bad_Request = "Requisição inválida";
+        public static string Unknown_Error = "Erro Desconhecido";
+        public static string Reserva_Already_Exists = "Objeto já cadastrado";
     }
 }

@@ -30,7 +30,6 @@ namespace GerenciadorRestaurante.API
 
             app.UseAuthorization();
 
-
             app.MapControllers();
 
             app.Run();
