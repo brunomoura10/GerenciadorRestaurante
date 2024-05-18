@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GerenciadorRestaurante.Infrastructure.Persistence.Repositorio
 {
-    public class ClienteRepository : RepositorioBase<Usuario>, IUsuarioRepository
+    public class ClienteRepository : RepositorioBase<Usuario>, IClienteRepository
     {
         public ClienteRepository(ApplicationDbContext context) : base(context)
         {

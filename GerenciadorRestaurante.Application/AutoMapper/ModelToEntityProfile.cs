@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GerenciadorRestaurante.Application.Models.InputModels;
+using GerenciadorRestaurante.Application.Models.ViewModels;
 using GerenciadorRestaurante.Core.Entites;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace GerenciadorRestaurante.Application.AutoMapper
         {
             CreateMap<RestauranteInputModel, Restaurante>();
             CreateMap<ReservaInputModel, Reserva>();
+            CreateMap<RestaurantePratoInputModel, RestaurantePrato>();
+            CreateMap<ClienteViewModel, Usuario>();
         }
 
     }

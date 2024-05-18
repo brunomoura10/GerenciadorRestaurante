@@ -60,7 +60,7 @@ namespace GerenciadorRestaurante.Application.Services
         {
             Reserva? reserva = await _reservaRepository.ObterPorIdAsync(id) ?? throw new NotFoundException();
 
-            await _reservaRepository.ExcluirAsync(reserva.Id);
+            await _reservaRepository.ExcluirAsync(reserva);
 
             return _mapper.Map<ReservaViewModel>(reserva);
         }

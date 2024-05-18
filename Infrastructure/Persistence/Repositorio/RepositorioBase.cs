@@ -31,9 +31,8 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Repositorio
             return entidade;
         }
 
-        public virtual async Task ExcluirAsync(long id)
+        public virtual async Task ExcluirAsync(T entidade)
         {
-            var entidade = await ObterPorIdAsync(id);
             _dbSet.Remove(entidade);
             await _context.SaveChangesAsync();
          
@@ -53,7 +52,8 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Repositorio
 
         public virtual async Task<T> ObterPorIdAsync(long id)
         {
-           return await _dbSet.FirstOrDefaultAsync(e => e.Id == id);
+            return await _dbSet.FirstOrDefaultAsync(e => e.Id == id);
+
         }
 
         public virtual async Task<IEnumerable<T>> ObterTodosAsync()
