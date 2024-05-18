@@ -1,4 +1,5 @@
-﻿using GerenciadorRestaurante.Core.Enums;
+﻿using GerenciadorRestaurante.Core.Entites;
+using GerenciadorRestaurante.Core.Enums;
 using GerenciadorRestaurante.Core.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -6,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GerenciadorRestaurante.Core.Entites
+namespace GerenciadorRestaurante.Application.Models.InputModels
 {
-    public class Usuario : EntidadeBase    {
+    public class ClienteInputModel
+    {
         public string Nome { get; set; }
         public string Senha { get; set; }
         public string Telefone { get; set; }
