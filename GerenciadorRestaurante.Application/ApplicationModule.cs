@@ -36,6 +36,7 @@ namespace GerenciadorRestaurante.Application
             services.AddValidatorsFromAssemblyContaining<MesaInputValidator>();
             services.AddValidatorsFromAssemblyContaining<PratoInputValidator>();
 
+            
 
             return services;
         }

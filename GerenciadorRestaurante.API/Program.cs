@@ -16,6 +16,9 @@ namespace GerenciadorRestaurante.API
             builder.Services.AddSwaggerGen()
                             .AddInfra(builder.Configuration)
                             .AddApplication();
+            
+            builder.Logging.ClearProviders();
+            builder.Logging.AddLog4Net();
                             
             var app = builder.Build();
 

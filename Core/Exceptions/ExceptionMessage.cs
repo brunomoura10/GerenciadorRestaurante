@@ -17,7 +17,6 @@ namespace GerenciadorRestaurante.Core.Exceptions
         public static string Unknown_Error = "Erro Desconhecido";
         public static string Reserva_Already_Exists = "Objeto já cadastrado";
         public static string MesaNaoEncontrada = "Mesa não encontrada na base de dados";
-        public static string NehumaReservaEncontradaParadaRestaurante = "Nenhuma reserva encontrada para o restaurante";
 
     }
 
