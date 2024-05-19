@@ -43,15 +43,18 @@ namespace GerenciadorRestaurante.Core.Exceptions
         {
         }
         public MesaNaoEncontradaException() : base(ExceptionMessage.MesaNaoEncontrada)
-
-    public class NehumaReservaEncontradaParadaRestaurante : Exception
-    {
-        public NehumaReservaEncontradaParadaRestaurante(string message) : base(message)
         {
+
         }
-        public NehumaReservaEncontradaParadaRestaurante() : base(ExceptionMessage.NehumaReservaEncontradaParadaRestaurante)
 
+        public class NehumaReservaEncontradaParadaRestaurante : Exception
         {
+            public NehumaReservaEncontradaParadaRestaurante(string message) : base(message)
+            {
+            }
+            public NehumaReservaEncontradaParadaRestaurante() : base(ExceptionMessage.NehumaReservaEncontradaParadaRestaurante)
+            {
+            }
         }
     }
 }

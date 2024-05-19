@@ -12,7 +12,7 @@ namespace GerenciadorRestaurante.API.Controllers
     [Route("api/[controller]")]
     public class PratoController : ControllerBase
     {
-                private readonly IPratoService _pratoService;
+        private readonly IPratoService _pratoService;
 
         public PratoController(IPratoService pratoService)
         {
