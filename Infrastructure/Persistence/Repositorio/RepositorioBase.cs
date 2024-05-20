@@ -17,7 +17,7 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Repositorio
 
         public RepositorioBase(ApplicationDbContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
             _dbSet = _context.Set<T>();
         }
 
