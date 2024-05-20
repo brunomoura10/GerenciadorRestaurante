@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace GerenciadorRestaurante.Core.Repositories
 {
-    public interface IClienteRepository : IRepositorioBase<Cliente>
+    public interface IUsuarioRepository : IRepositorioBase<Usuario>
     {
-
+        Task<Usuario> GetByEmailAsync(string email);
+        Task<Usuario> GetByNomeUsuarioAsync(string nomeUsuario);
     }
 }

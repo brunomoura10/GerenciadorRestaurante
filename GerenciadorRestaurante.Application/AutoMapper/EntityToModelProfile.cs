@@ -16,11 +16,11 @@ namespace GerenciadorRestaurante.Application.AutoMapper
             CreateMap<Restaurante, RestauranteViewModel>();
             CreateMap<RestaurantePrato, RestaurantePratoViewModel>();
             CreateMap<Reserva, ReservaViewModel>();
+            CreateMap<Cliente, ClienteViewModel>();
+            CreateMap<Usuario, UsuarioViewModel>();
             CreateMap<Usuario, ClienteViewModel>();
             CreateMap<Mesa, MesaViewModel>();
             CreateMap<Prato, PratoViewModel>();
         }
-  
-
     }
 }
