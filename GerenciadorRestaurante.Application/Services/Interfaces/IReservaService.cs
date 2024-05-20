@@ -18,6 +18,6 @@ namespace GerenciadorRestaurante.Application.Services.Interfaces
 
         Task<ReservaViewModel> DeletarReserva(int id);
 
-        Task<ReservaViewModel> AtualizarReserva(int id, ReservaInputModel reservaInputModel);
+        Task  AtualizarReserva(int id, ReservaInputModel reservaInputModel);
     }
 }
