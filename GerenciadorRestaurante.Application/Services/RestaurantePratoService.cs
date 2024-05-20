@@ -64,5 +64,8 @@ namespace GerenciadorRestaurante.Application.Services
             return _mapper.Map<IEnumerable<RestaurantePratoViewModel>>(restaurantePratos);
 
         }
+     
+
+        
     }
 }

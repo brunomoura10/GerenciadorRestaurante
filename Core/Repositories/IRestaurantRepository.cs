@@ -9,5 +9,6 @@ namespace GerenciadorRestaurante.Core.Repositories
 {
     public interface IRestaurantRepository: IRepositorioBase<Restaurante>
     {
+        Task<Restaurante> ObterRestauranteComReservasAsync(long id, DateTime dataReserva);
     }
 }

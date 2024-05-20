@@ -15,6 +15,7 @@ namespace GerenciadorRestaurante.Application.Services.Interfaces
         Task ExcluirRestaurante(long id);
         Task<IEnumerable<RestauranteViewModel>> ObterTodos();
         Task<RestauranteViewModel> ObterPorId(long id);
+        Task<RestauranteViewModel>ObterRestauranteComReservas(long id, DateTime dataReserva);
 
 
 
