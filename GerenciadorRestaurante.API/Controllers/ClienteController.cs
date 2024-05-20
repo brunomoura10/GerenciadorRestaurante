@@ -81,7 +81,7 @@ namespace GerenciadorRestaurante.API.Controllers
         {
             try
             {
-                await _clienteService.DeletarReserva(id);
+                await _clienteService.DeletarCliente(id);
                 return NoContent();
             }
             catch (Exception e)

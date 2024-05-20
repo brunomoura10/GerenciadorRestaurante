@@ -21,9 +21,10 @@ namespace GerenciadorRestaurante.Application
             services.AddScoped<IRestaurantePratoService, RestaurantePratoService>();
             services.AddScoped<IReservaService, ReservaService>();
             services.AddScoped<IClienteService, ClienteService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IMesaService, MesaService>();
             services.AddScoped<IPratoService, PratoService>();
-
 
             //AutoMapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

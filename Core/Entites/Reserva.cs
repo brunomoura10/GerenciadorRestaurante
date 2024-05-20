@@ -16,7 +16,7 @@ namespace GerenciadorRestaurante.Core.Entites
         public long MesaId { get; set; }
         public Mesa Mesa { get; set;  }
         public long UsuarioId { get; set; }
-        public Usuario Usuario { get; set; }
+        public Cliente Usuario { get; set; }
         public long RestauranteId { get; set; }
         public Restaurante Restaurante { get; set; }
     }

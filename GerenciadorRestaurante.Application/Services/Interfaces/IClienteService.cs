@@ -10,14 +10,14 @@ namespace GerenciadorRestaurante.Application.Services.Interfaces
 {
     public interface IClienteService
     {
-        Task<ClienteViewModel> CadastrarCliente(ClienteInputModel clienteInputModel);
+        Task CadastrarCliente(ClienteInputModel clienteInputModel);
 
         Task<ClienteViewModel> ConsultarClientePorId(int id);
 
         Task<IEnumerable<ClienteViewModel>> ConsultarTodosClientes();
 
-        Task<ClienteViewModel> DeletarReserva(int id);
+        Task DeletarCliente(int id);
 
-        Task<ClienteViewModel> AtualizarCliente(int id, ClienteInputModel clienteInputModel);
+        Task AtualizarCliente(int id, ClienteInputModel clienteInputModel);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using GerenciadorRestaurante.Application.Models.InputModels;
 using GerenciadorRestaurante.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GerenciadorRestaurante.API.Controllers
 {

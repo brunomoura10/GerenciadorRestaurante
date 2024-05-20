@@ -13,25 +13,15 @@ namespace GerenciadorRestaurante.Infrastructure.Persistence.Configuration
     {
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-           builder.ToTable("tb_usuario");
+            builder.ToTable("tb_usuario");
             builder.HasKey(x => x.Id);
             builder.Property(p => p.Id).ValueGeneratedOnAdd().UseIdentityColumn();
-            builder.Property(p => p.Nome).HasColumnType("varchar(60)").IsRequired();
-            builder.Property(p => p.Senha).HasColumnType("varchar(60)").IsRequired();
-            builder.Property(p => p.Telefone).HasColumnType("varchar(11)").IsRequired();
-            builder.OwnsOne(p => p.Endereco, x =>
-            {
-                x.Property(p => p.Cep).HasColumnType("varchar(9)").HasColumnName("Cep").IsRequired();
-                x.Property(p => p.Cidade).HasColumnType("varchar(60)").HasColumnName("Cidade").IsRequired();
-                x.Property(p => p.Estado).HasColumnType("varchar(2)").HasColumnName("Estado").IsRequired();
-                x.Property(p => p.Bairro).HasColumnType("varchar(60)").HasColumnName("Bairro").IsRequired();
-                x.Property(p => p.Logradouro).HasColumnType("varchar(60)").HasColumnName("Logradouro").IsRequired();
-                x.Property(p => p.Numero).HasColumnType("varchar(10)").HasColumnName("Numero").IsRequired();
-                x.Property(p => p.Complemento).HasColumnType("varchar(60)").HasColumnName("Complemento");
-            });
-            builder.Property(p => p.CPF).HasColumnType("varchar(11)").IsRequired(); 
-            builder.Property(p => p.DataNascimento).HasColumnType("date").IsRequired();
-            builder.Property(p => p.Tipo).HasColumnType("int").IsRequired();
+            builder.Property(p => p.Nome).HasMaxLength(100).IsRequired();
+            builder.Property(p => p.Email).HasMaxLength(80).IsRequired();
+            builder.Property(u => u.SenhaCriptografa).HasMaxLength(255).IsRequired();
+            builder.Property(u => u.Permissao).HasConversion<string>().IsRequired();
+            builder.HasIndex(x => x.Email).IsUnique();
+            builder.HasIndex(x => x.NomeUsuario).IsUnique();
         }
     }
 }

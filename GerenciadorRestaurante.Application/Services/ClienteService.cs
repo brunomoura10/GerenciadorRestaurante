@@ -1,6 +1,10 @@
-﻿using GerenciadorRestaurante.Application.Models.InputModels;
+﻿using AutoMapper;
+using GerenciadorRestaurante.Application.Models.InputModels;
 using GerenciadorRestaurante.Application.Models.ViewModels;
 using GerenciadorRestaurante.Application.Services.Interfaces;
+using GerenciadorRestaurante.Core.Entites;
+using GerenciadorRestaurante.Core.Exceptions;
+using GerenciadorRestaurante.Core.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,29 +15,51 @@ namespace GerenciadorRestaurante.Application.Services
 {
     public class ClienteService : IClienteService
     {
-        public Task<ClienteViewModel> AtualizarCliente(int id, ClienteInputModel clienteInputModel)
+        private readonly IClienteRepository _clienteRepository;
+        private readonly IMapper _mapper;
+
+        public ClienteService(IClienteRepository clienteRepository, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _clienteRepository = clienteRepository;
+            _mapper = mapper;
         }
 
-        public Task<ClienteViewModel> CadastrarCliente(ClienteInputModel clienteInputModel)
+
+        public async Task AtualizarCliente(int id, ClienteInputModel clienteInputModel)
         {
-            throw new NotImplementedException();
+            var cliente = await _clienteRepository.ObterPorIdAsync(id) ?? throw new NotFoundException(); ;
+
+            _mapper.Map(clienteInputModel, cliente);
+
+            await _clienteRepository.AtualizarAsync(cliente);
         }
 
-        public Task<ClienteViewModel> ConsultarClientePorId(int id)
+        public async Task CadastrarCliente(ClienteInputModel clienteInputModel)
         {
-            throw new NotImplementedException();
+            var cliente = _mapper.Map<Cliente>(clienteInputModel);
+
+            await _clienteRepository.InserirAsync(cliente);
         }
 
-        public Task<IEnumerable<ClienteViewModel>> ConsultarTodosClientes()
+        public async Task<ClienteViewModel> ConsultarClientePorId(int id)
         {
-            throw new NotImplementedException();
+            var cliente = await _clienteRepository.ObterPorIdAsync(id) ?? throw new NotFoundException();
+
+            return _mapper.Map<ClienteViewModel>(cliente);
         }
 
-        public Task<ClienteViewModel> DeletarReserva(int id)
+        public async Task<IEnumerable<ClienteViewModel>> ConsultarTodosClientes()
         {
-            throw new NotImplementedException();
+            var clientes = await _clienteRepository.ObterTodosAsync();
+
+            return _mapper.Map<IEnumerable<ClienteViewModel>>(clientes);
+        }
+
+        public async Task DeletarCliente(int id)
+        {
+            var cliente = await _clienteRepository.ObterPorIdAsync(id) ?? throw new NotFoundException();
+
+            await _clienteRepository.ExcluirAsync(cliente);
         }
     }
 }
