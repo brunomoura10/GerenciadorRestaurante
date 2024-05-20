@@ -16,7 +16,6 @@ namespace GerenciadorRestaurante.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddInfra(builder.Configuration)
                             .AddApplication();
-
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GerenciadorRestaurante.API", Version = "v1" });
@@ -47,7 +46,10 @@ namespace GerenciadorRestaurante.API
                 }
             });
             });
-
+          
+            builder.Logging.ClearProviders();
+            builder.Logging.AddLog4Net();
+          
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

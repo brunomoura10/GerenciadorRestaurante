@@ -9,10 +9,12 @@ namespace GerenciadorRestaurante.API.Controllers
     public class RestauranteController : ControllerBase
     {
         private readonly IRestauranteService _restauranteService;
+        private readonly ILogger<RestauranteController> _logger;
 
-        public RestauranteController(IRestauranteService restauranteService)
+        public RestauranteController(IRestauranteService restauranteService, ILogger<RestauranteController> logger)
         {
             _restauranteService = restauranteService;
+            _logger = logger;
         }
 
         [HttpPost("cadastrar-restaurante")]
@@ -82,7 +84,23 @@ namespace GerenciadorRestaurante.API.Controllers
         {
             try
             {
+                _logger.LogInformation("Obtendo restaurante por id");
                 var restaurante = await _restauranteService.ObterPorId(id);
+                return Ok(restaurante);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("obter-restaurante-com-reserva-por-data/{id}/{data}")]
+        public async Task<IActionResult> ObterRestauranteComReservas([FromRoute] long id, [FromRoute] DateTime data)
+        {
+            try
+            {
+                var restaurante = await _restauranteService.ObterRestauranteComReservas(id, data);
                 return Ok(restaurante);
             }
             catch (Exception e)

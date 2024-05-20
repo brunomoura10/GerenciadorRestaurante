@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static GerenciadorRestaurante.Core.Exceptions.MesaNaoEncontradaException;
 
 namespace GerenciadorRestaurante.Application.Services
 {
@@ -60,6 +61,18 @@ namespace GerenciadorRestaurante.Application.Services
            var restaurantes = await _restauranteRepository.ObterTodosAsync();
 
             return _mapper.Map<IEnumerable<RestauranteViewModel>>(restaurantes);
+        }
+      
+        public async Task<RestauranteViewModel> ObterRestauranteComReservas(long id, DateTime dataReserva)
+        {
+            var restaurante = await _restauranteRepository.ObterRestauranteComReservasAsync(id, dataReserva) ?? throw new RestauranteNaoEncontradoException();
+
+            if (restaurante.Reservas.Count == 0)
+            {
+                throw new NehumaReservaEncontradaParadaRestaurante();
+            }
+
+            return _mapper.Map<RestauranteViewModel>(restaurante);
         }
     }
 }
