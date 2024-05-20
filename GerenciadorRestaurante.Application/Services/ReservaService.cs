@@ -24,9 +24,13 @@ namespace GerenciadorRestaurante.Application.Services
             _mapper = mapper;
         }
 
-        public Task<ReservaViewModel> AtualizarReserva(int id, ReservaInputModel reservaInputModel)
+        public async Task  AtualizarReserva(int id, ReservaInputModel reservaInputModel)
         {
-            throw new NotImplementedException();
+            var reserva = await _reservaRepository.ObterPorIdAsync(id) ?? throw new NotFoundException(); ;
+
+            _mapper.Map(reservaInputModel, reserva);
+
+             await _reservaRepository.AtualizarAsync(reserva);
         }
 
         public async Task<ReservaViewModel> CadastrarReserva(ReservaInputModel reservaInputModel)

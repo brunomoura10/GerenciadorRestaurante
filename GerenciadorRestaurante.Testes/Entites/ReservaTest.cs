@@ -6,6 +6,8 @@ using GerenciadorRestaurante.Application.Models.ViewModels;
 using GerenciadorRestaurante.Core.Repositories;
 using Moq;
 using System.Linq.Expressions;
+using GerenciadorRestaurante.Core.Enums;
+using GerenciadorRestaurante.Core.Exceptions;
 
 namespace GerenciadorRestaurante.Testes.Entites
 {
@@ -28,9 +30,38 @@ namespace GerenciadorRestaurante.Testes.Entites
         public async Task CadastrarReserva_QuandoReservaNaoExiste_DeveCadastrarERetornarReservaViewModel()
         {
             // Arrange
-            var reservaInputModel = new ReservaInputModel(); // Preencha com os dados necessários para o teste
-            var reserva = new Reserva(); // Preencha com os dados necessários para o teste
-            var reservaViewModel = new ReservaViewModel(); // Preencha com os dados esperados
+            var reservaInputModel = new ReservaInputModel
+            {
+                DataReserva = DateTime.Now,
+                QuantidadePessoas = 4,
+                Observacao = "Reserva de teste",
+                StatusReserva = StatusReserva.Confirmada,
+                MesaId = 1,
+                UsuarioId = 1,
+                RestauranteId = 1
+            };
+
+            var reserva = new Reserva
+            {
+                DataReserva = reservaInputModel.DataReserva,
+                QuantidadePessoas = reservaInputModel.QuantidadePessoas,
+                Observacao = reservaInputModel.Observacao,
+                StatusReserva = reservaInputModel.StatusReserva,
+                MesaId = reservaInputModel.MesaId,
+                UsuarioId = reservaInputModel.UsuarioId,
+                RestauranteId = reservaInputModel.RestauranteId
+            };
+
+            var reservaViewModel = new ReservaViewModel
+            {
+                DataReserva = reservaInputModel.DataReserva,
+                QuantidadePessoas = reservaInputModel.QuantidadePessoas,
+                Observacao = reservaInputModel.Observacao,
+                StatusReserva = reservaInputModel.StatusReserva,
+                Mesa = new Mesa { Id = reservaInputModel.MesaId },  
+                Usuario = new Usuario { Id = reservaInputModel.UsuarioId },  
+                Restaurante = new Restaurante { Id = reservaInputModel.RestauranteId }  
+            };
 
             _mapperMock.Setup(mapper => mapper.Map<Reserva>(reservaInputModel)).Returns(reserva);
             _reservaRepositoryMock.Setup(repo => repo.ExistAsync(It.IsAny<Expression<Func<Reserva, bool>>>())).ReturnsAsync(false);
@@ -42,8 +73,92 @@ namespace GerenciadorRestaurante.Testes.Entites
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(reservaViewModel, result);
+            Assert.AreEqual(reservaViewModel.DataReserva, result.DataReserva);
+            Assert.AreEqual(reservaViewModel.QuantidadePessoas, result.QuantidadePessoas);
+            Assert.AreEqual(reservaViewModel.Observacao, result.Observacao);
+            Assert.AreEqual(reservaViewModel.StatusReserva, result.StatusReserva);
+            Assert.AreEqual(reservaViewModel.Mesa.Id, result.Mesa.Id);
+            Assert.AreEqual(reservaViewModel.Usuario.Id, result.Usuario.Id);
+            Assert.AreEqual(reservaViewModel.Restaurante.Id, result.Restaurante.Id);
         }
 
+        [Test]
+        public void CadastrarReserva_QuandoReservaJaExiste_DeveLancarAlreadyExistsException()
+        {
+            // Arrange
+            var reservaInputModel = new ReservaInputModel
+            {
+                DataReserva = DateTime.Now,
+                QuantidadePessoas = 4,
+                Observacao = "Reserva de teste",
+                StatusReserva = StatusReserva.Confirmada,
+                MesaId = 1,
+                UsuarioId = 1,
+                RestauranteId = 1
+            };
+
+            _reservaRepositoryMock.Setup(repo => repo.ExistAsync(It.IsAny<Expression<Func<Reserva, bool>>>())).ReturnsAsync(true);
+
+            // Act & Assert
+            var ex = Assert.ThrowsAsync<AlreadyExistsException>(() => _reservaService.CadastrarReserva(reservaInputModel));
+            Assert.AreEqual("A reserva já existe.", ex.Message);
+        }
+
+        [Test]
+        public void CadastrarReserva_QuandoMapeamentoFalha_DeveLancarException()
+        {
+            // Arrange
+            var reservaInputModel = new ReservaInputModel
+            {
+                DataReserva = DateTime.Now,
+                QuantidadePessoas = 4,
+                Observacao = "Reserva de teste",
+                StatusReserva = StatusReserva.Confirmada,
+                MesaId = 1,
+                UsuarioId = 1,
+                RestauranteId = 1
+            };
+
+            _mapperMock.Setup(mapper => mapper.Map<Reserva>(reservaInputModel)).Throws(new Exception("Erro no mapeamento"));
+
+            // Act & Assert
+            var ex = Assert.ThrowsAsync<Exception>(() => _reservaService.CadastrarReserva(reservaInputModel));
+            Assert.AreEqual("Erro no mapeamento", ex.Message);
+        }
+
+        [Test]
+        public void CadastrarReserva_QuandoInsercaoFalha_DeveLancarException()
+        {
+            // Arrange
+            var reservaInputModel = new ReservaInputModel
+            {
+                DataReserva = DateTime.Now,
+                QuantidadePessoas = 4,
+                Observacao = "Reserva de teste",
+                StatusReserva = StatusReserva.Confirmada,
+                MesaId = 1,
+                UsuarioId = 1,
+                RestauranteId = 1
+            };
+
+            var reserva = new Reserva
+            {
+                DataReserva = reservaInputModel.DataReserva,
+                QuantidadePessoas = reservaInputModel.QuantidadePessoas,
+                Observacao = reservaInputModel.Observacao,
+                StatusReserva = reservaInputModel.StatusReserva,
+                MesaId = reservaInputModel.MesaId,
+                UsuarioId = reservaInputModel.UsuarioId,
+                RestauranteId = reservaInputModel.RestauranteId
+            };
+
+            _mapperMock.Setup(mapper => mapper.Map<Reserva>(reservaInputModel)).Returns(reserva);
+            _reservaRepositoryMock.Setup(repo => repo.ExistAsync(It.IsAny<Expression<Func<Reserva, bool>>>())).ReturnsAsync(false);
+            _reservaRepositoryMock.Setup(repo => repo.InserirAsync(reserva)).ThrowsAsync(new Exception("Erro ao inserir no repositório"));
+
+            // Act & Assert
+            var ex = Assert.ThrowsAsync<Exception>(() => _reservaService.CadastrarReserva(reservaInputModel));
+            Assert.AreEqual("Erro ao inserir no repositório", ex.Message);
+        }
     }
 }
