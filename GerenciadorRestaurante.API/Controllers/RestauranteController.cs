@@ -109,5 +109,21 @@ namespace GerenciadorRestaurante.API.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+   
+        //[HttpGet("obter-restaurante-com-pratos/{id}")]
+        //public async Task<IActionResult> ObterRestauranteComPratos([FromRoute] long id)
+        //{
+        //    try
+        //    {
+        //        var restaurante = await _restauranteService.ObterRestauranteComPratos(id);
+        //        return Ok(restaurante);
+        //    }
+        //    catch (Exception e)
+        //    {
+
+        //        return BadRequest(e.Message);
+        //    }
+        //}
     }
 }

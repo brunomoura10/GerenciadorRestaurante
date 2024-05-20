@@ -47,14 +47,15 @@ namespace GerenciadorRestaurante.Core.Exceptions
 
         }
 
-        public class NehumaReservaEncontradaParadaRestaurante : Exception
+      
+    }
+    public class NehumaReservaEncontradaParadaRestaurante : Exception
+    {
+        public NehumaReservaEncontradaParadaRestaurante(string message) : base(message)
         {
-            public NehumaReservaEncontradaParadaRestaurante(string message) : base(message)
-            {
-            }
-            public NehumaReservaEncontradaParadaRestaurante() : base(ExceptionMessage.NehumaReservaEncontradaParadaRestaurante)
-            {
-            }
+        }
+        public NehumaReservaEncontradaParadaRestaurante() : base(ExceptionMessage.NehumaReservaEncontradaParadaRestaurante)
+        {
         }
     }
 }
